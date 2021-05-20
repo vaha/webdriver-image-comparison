@@ -1,5 +1,5 @@
 import {ensureDirSync, pathExistsSync} from 'fs-extra';
-import {join} from 'path';
+import {join, normalize} from 'path';
 import BaseClass from './base';
 
 describe('BaseClass', () => {
@@ -8,9 +8,9 @@ describe('BaseClass', () => {
       baselineFolder: './subfolder//../baseline',
       screenshotPath: './../my_folder//screenshots'
     });
-    expect(instance.folders.actualFolder).toBe('../my_folder/screenshots/actual');
+    expect(instance.folders.actualFolder).toBe(normalize('../my_folder/screenshots/actual'));
     expect(instance.folders.baselineFolder).toBe('baseline');
-    expect(instance.folders.diffFolder).toBe('../my_folder/screenshots/diff');
+    expect(instance.folders.diffFolder).toBe(normalize('../my_folder/screenshots/diff'));
   });
 
   it('should be able to create baselineFolder with a function', () => {
@@ -25,16 +25,16 @@ describe('BaseClass', () => {
       baselineFolder: setPath(options.baseline),
       screenshotPath: setPath(options.screenshot)
     });
-    expect(instance.folders.actualFolder).toBe('../my_folder/screenshots/actual');
+    expect(instance.folders.actualFolder).toBe(normalize('../my_folder/screenshots/actual'));
     expect(instance.folders.baselineFolder).toBe('baseline');
-    expect(instance.folders.diffFolder).toBe('../my_folder/screenshots/diff');
+    expect(instance.folders.diffFolder).toBe(normalize('../my_folder/screenshots/diff'));
   });  
 
   it('should be able to create BaseClass with default options', () => {
     const instance = new BaseClass({});
-    expect(instance.folders.actualFolder).toBe('.tmp/actual');
-    expect(instance.folders.baselineFolder).toBe('wic/baseline/');
-    expect(instance.folders.diffFolder).toBe('.tmp/diff');
+    expect(instance.folders.actualFolder).toBe(normalize('.tmp/actual'));
+    expect(instance.folders.baselineFolder).toBe(normalize('wic/baseline/'));
+    expect(instance.folders.diffFolder).toBe(normalize('.tmp/diff'));
   });
 
   it('should remove the actual and diff folder if this is needed', () => {

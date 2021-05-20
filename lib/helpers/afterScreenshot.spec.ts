@@ -1,5 +1,5 @@
 import afterScreenshot from './afterScreenshot';
-import {join} from 'path';
+import {join, normalize} from 'path';
 import {removeSync} from 'fs-extra';
 import {LogLevel} from "./options.interface";
 
@@ -48,7 +48,7 @@ describe('afterScreenshot', () => {
     expect(await afterScreenshot(MOCKED_EXECUTOR, options)).toEqual({
       'devicePixelRatio': 2,
       'fileName': 'tag-browserName-1400x850-dpr-2.png',
-      'path': `${process.cwd()}/.tmp/afterScreenshot/desktop_browserName`,
+      'path': normalize(`${process.cwd()}/.tmp/afterScreenshot/desktop_browserName`),
     });
   });
 });
