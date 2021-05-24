@@ -113,7 +113,7 @@ export async function getFullPageScreenshotsDataNativeMobile(
   for (let i = 0; i <= amountOfScrollsArray.length; i++) {
     // Determine and start scrolling
     const scrollY = iosViewportHeight * i;
-    await executor(scrollToPosition, scrollY);
+    await executor(scrollToPosition, scrollY, options.scrollableElement);
 
     // Hide scrollbars before taking a screenshot, we don't want them, on the screenshot
     await executor(hideScrollBars, true);
@@ -201,7 +201,7 @@ export async function getFullPageScreenshotsDataAndroidChromeDriver(
   for (let i = 0; i <= amountOfScrollsArray.length; i++) {
     // Determine and start scrolling
     const scrollY = innerHeight * i;
-    await executor(scrollToPosition, scrollY);
+    await executor(scrollToPosition, scrollY, options.scrollableElement);
 
     // Hide scrollbars before taking a screenshot, we don't want them, on the screenshot
     await executor(hideScrollBars, true);
@@ -288,7 +288,7 @@ export async function getFullPageScreenshotsDataDesktop(
   for (let i = 0; i <= amountOfScrollsArray.length; i++) {
     // Determine and start scrolling
     const scrollY = actualInnerHeight * i;
-    await executor(scrollToPosition, scrollY);
+    await executor(scrollToPosition, scrollY, options.scrollableElement);
 
     // Simply wait the amount of time specified for lazy-loading
     await waitFor(fullPageScrollTimeout);

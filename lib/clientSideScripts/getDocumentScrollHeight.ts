@@ -19,7 +19,7 @@ export default function getDocumentScrollHeight(): number {
   let pageHeight = 0;
   let largestNodeElement = document.querySelector('body');
 
-  if (bodyScrollHeight === scrollHeight && bodyScrollHeight === viewPortHeight) {
+  if ((bodyScrollHeight === scrollHeight && bodyScrollHeight === viewPortHeight) || (bodyScrollHeight === 0)) {
     findHighestNode(document.documentElement.childNodes);
 
     // There could be some elements above this largest element,

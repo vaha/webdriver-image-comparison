@@ -67,6 +67,8 @@ export interface FullPageScreenshotNativeMobileOptions {
   toolBarShadowPadding: number;
   // Elements that need to be hidden after the first scroll for a fullpage scroll
   hideAfterFirstScroll: (HTMLElement | HTMLElement[])[];
+  // Element that need to be scrolled instead of document.documentelement
+  scrollableElement?: HTMLElement;
 }
 
 export interface FullPageScreenshotOptions {
@@ -80,4 +82,6 @@ export interface FullPageScreenshotOptions {
   hideAfterFirstScroll: (HTMLElement | HTMLElement[])[];
   // Level to show logs
   logLevel: LogLevel;
+  // Element that need to be scrolled instead of document.documentelement
+  scrollableElement?: HTMLElement;
 }
